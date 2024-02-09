@@ -1,27 +1,27 @@
 namespace MyJournal;
 using System;
 using System.Security.Cryptography.X509Certificates;
+using System.IO;
 
 class Program
 {
     static void Main(string[] args)
-    {        
+    {
         string _userInput;
         bool _run = true;
 
         Journal _journal = new Journal();
-        Entry _entry = new Entry();
 
         //The list of possible prompts
         List<string> _prompts = new List<string> {"What was the highlight of your day?"
-        ,"Did you learn something new today?" 
+        ,"Did you learn something new today?"
         ,"How did you see the hand of the Lord in your life today?"
         ,"What emotions did you feel today?"
         ,"What is something you appreciated about the day?"
         ,"Describe an interesting person you saw or talked to today."
         ,"If you had one thing you had to do over today, what would it be?"
         ,"What is something you wondered about today?"};
-        
+
         void ShowMenu()
         {
             // Displays a menu to the user.
@@ -30,7 +30,7 @@ class Program
         }
 
         void Select()
-        { 
+        {
             // Collect input from the user and activate the menu item chosen.
             // This might even go in main and not be a function.
 
@@ -45,8 +45,8 @@ class Program
                 if (_userInput == "1")
                 { // 1. Write
                     string _randomPrompt = ChooseRandomPrompt(); // Store a random prompt
+                    Entry _entry = new Entry();
                     _entry.Make(_randomPrompt);
-                    _journal.WriteEntry(); // Updates the _entry attribute
                     Console.Clear();
                     _journal.AddEntry(_entry);
 
@@ -54,7 +54,6 @@ class Program
 
                 else if (_userInput == "2")
                 { // 2. Display
-                    Console.Clear();
                     _journal.Display();
                     Console.WriteLine("\nPress any key to return to the menu.");
                     Console.ReadKey();
@@ -63,14 +62,14 @@ class Program
 
                 else if (_userInput == "3")
                 { // 3. Load
-                    // Journal.Load();
-                    Console.WriteLine("3");
+                    LoadFile();
+                    Console.Write("-- Journal loaded. --\n\n");
                 }
 
                 else if (_userInput == "4")
                 { // 4. Save
-                    // Journal.Export();
-                    Console.WriteLine("4");
+                    SaveFile();
+                    Console.Write("-- Journal saved! --\n\n");
                 }
 
                 else if (_userInput == "5")
@@ -96,7 +95,45 @@ class Program
             return randomPrompt;
         }
 
-        
+        void LoadFile()
+        {
+            Console.WriteLine("Load File");
+            Console.Write("Please enter a filename that ends with .txt  ");
+            string fileName = Console.ReadLine();
+            string[] lines = System.IO.File.ReadAllLines(fileName);
+            _journal.Reset();
+
+            foreach (string line in lines)
+            {
+                string[] parts = line.Split("*");
+
+                string date = parts[0];
+                string prompt = parts[1];
+                string response = parts[2];
+                Entry loadedEntry = new Entry(response, prompt, date);
+                loadedEntry.Render();
+                _journal.AddEntry(loadedEntry);
+            }
+
+        }
+
+        void SaveFile()
+        {
+            List<string> strings = _journal.GetEntriesString();
+
+            Console.WriteLine("Save File");
+            Console.Write("Please enter a filename that ends with .txt  ");
+            string fileName = Console.ReadLine();
+            using (StreamWriter outputFile = new StreamWriter(fileName))
+            {
+                foreach (string onestring in strings)
+                {
+                    outputFile.WriteLine(onestring);
+                }
+            }
+        }
+
+
         while (_run == true)
         {
             Select();

@@ -1,4 +1,5 @@
 using System.Dynamic;
+using System.IO;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 
@@ -15,8 +16,8 @@ class Entry
     {
 
     }
-    
-    public Entry(string _response, string _prompt, string _date, string _rendered)
+
+    public Entry(string _response, string _prompt, string _date)
     {
         this._response = _response;
         this._prompt = _prompt;
@@ -38,7 +39,7 @@ class Entry
         return _prompt;
     }
 
-   public void SetPrompt(string prompt)
+    public void SetPrompt(string prompt)
     {
         _prompt = prompt;
     }
@@ -56,29 +57,22 @@ class Entry
     }
 
     public void Make(string prompt)
-    {   
+    {
         SetPrompt(prompt);
         Console.WriteLine(_prompt);
         string newResponse = Console.ReadLine();
         SetResponse(newResponse);
         SetDate();
         Render();
-        Entry _entry = new Entry(_response, _prompt, _date, _rendered);
     }
 
     public void Render()
     {
-        _rendered = $"{_date}\n{_prompt}\n\n{_response}\n\n---------------";
-        // Give to Journal class
+        _rendered = $"{_date} *{_prompt} *{_response} *";
     }
 
     public string GetRendered()
     {
         return _rendered;
     }
-
-    // public bool Serialize()
-    // {
-    //     // Adds delimiters?
-    // }
 }
