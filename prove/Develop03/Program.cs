@@ -1,9 +1,168 @@
+namespace ScriptureMemorizer;
 using System;
-
 class Program
 {
+
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Develop03 World!");
+        Scripture _scripture;//private
+        List<Scripture> _scriptures = new List<Scripture>();//private
+        bool _run; //private
+
+        //                  Getters and setters:
+
+        //                  Methods:
+        void Prompt()
+        {
+            //Welcome to Scripture Memorizer! To quit, press any key besides Enter.
+            Console.WriteLine("Press Enter to continue...");
+
+            // Read a key from the console input
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+            // Check if the key pressed is the Enter key
+            if (keyInfo.Key == ConsoleKey.Enter)
+            {
+                _scripture.Enter();
+            }
+            else
+            {
+                _run = false;
+            }
+            
+        }
+
+        void PickScripture()
+        { // Setter
+            int scripturesListLength = _scriptures.Count;
+            Random randomGenerator = new Random();
+            int randomIndex = randomGenerator.Next(0, scripturesListLength);
+            _scripture = _scriptures[randomIndex];
+        }
+
+        void PopulateList()
+        {
+
+            // Old Testament
+            // _scriptures.Add(
+            //     new Scripture(
+            //         new Reference("Moses 1:39", false),
+            //         new Verse("For behold, this is my work and my glory — to bring to pass the immortality and eternal life of man.")
+            //     )
+            // );
+
+            // _scriptures.Add(
+            //     new Scripture(
+            //         new Reference("Moses 7:18", false),
+            //         new Verse("And the Lord called his people Zion, because they were of one heart and one mind, and dwelt in righteousness; and there was no poor among them.")
+            //     )
+            // );
+
+            _scriptures.Add(
+                new Scripture(
+                    new Reference("Proverbs 3:5-6", true),
+                    new List<Verse>()
+                    {
+                        new Verse("Trust in the Lord with all thine heart; and lean not unto thine own understanding."),
+                        new Verse("In all thy ways acknowledge him, and he shall direct thy paths.")
+                    }
+                )
+            );
+
+            // // New Testament
+            // Verse verse1 = new Verse("Ye are the light of the world. A city that is set on an hill cannot be hid.");
+            // Verse verse2 = new Verse("Neither do men light a candle, and put it under a bushel, but on a candlestick; and it giveth light unto all that are in the house.");
+            // Verse verse3 = new Verse("Let your light so shine before men, that they may see your good works, and glorify your Father which is in heaven.");
+            // List<Verse> verses = new List<Verse>();
+            // verses.Add(verse1);
+            // verses.Add(verse2);
+            // verses.Add(verse3);
+            // Reference reference = new Reference("Matthew 5:14-16", true);
+            // _scripture = new Scripture(reference, verses);
+            // _scriptures.Add(_scripture);
+
+            // Verse verse1 = new Verse("Come unto me, all ye that labour and are heavy laden, and I will give you rest.");
+            // Verse verse2 = new Verse("Take my yoke upon you, and learn of me; for I am meek and lowly in heart: and ye shall find rest unto your souls.");
+            // Verse verse3 = new Verse("For my yoke is easy, and my burden is light.");
+            // List<Verse> verses = new List<Verse>();
+            // verses.Add(verse1);
+            // verses.Add(verse2);
+            // verses.Add(verse3);
+            // Reference reference = new Reference("Matthew 11:28-30", true);
+            // _scripture = new Scripture(reference, verses);
+            // _scriptures.Add(_scripture);
+
+            // Verse verse1 = new Verse("If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.");
+            // Verse verse2 = new Verse("But let him ask in faith, nothing wavering. For he that wavereth is like a wave of the sea driven with the wind and tossed.");
+            // List<Verse> verses = new List<Verse>();
+            // verses.Add(verse1);
+            // verses.Add(verse2);
+            // Reference reference = new Reference("James 1:5-6", true);
+            // _scripture = new Scripture(reference, verses);
+            // _scriptures.Add(_scripture);
+
+            // //Book of Mormon
+
+            // Verse verse = new Verse("And it came to pass that I, Nephi, said unto my father: I will go and do the things which the Lord hath commanded, for I know that the Lord giveth no commandments unto the children of men, save he shall prepare a way for them that they may accomplish the thing which he commandeth them.");
+            // Reference reference = new Reference("1 Nephi 3:7", false);
+            // _scripture = new Scripture(reference, verse);
+            // _scriptures.Add(_scripture);
+
+            // Verse verse = new Verse("Adam fell that men might be; and men are, that they might have joy.");
+            // Reference reference = new Reference("2 Nephi 2:25", false);
+            // _scripture = new Scripture(reference, verse);
+            // _scriptures.Add(_scripture);
+
+            // Verse verse1 = new Verse("And when ye shall receive these things, I would exhort you that ye would ask God, the Eternal Father, in the name of Christ, if these things are not true; and if ye shall ask with a sincere heart, with real intent, having faith in Christ, he will manifest the truth of it unto you, by the power of the Holy Ghost.");
+            // Verse verse2 = new Verse("And by the power of the Holy Ghost ye may know the truth of all things.");
+            // List<Verse> verses = new List<Verse>();
+            // verses.Add(verse1);
+            // verses.Add(verse2);
+            // Reference reference = new Reference("Moroni 10 4-5", true);
+            // _scripture = new Scripture(reference, verses);
+            // _scriptures.Add(_scripture);
+
+            // //Doctrine and Covenants
+            // Verse verse = new Verse("Look unto me in every thought; doubt not, fear not.");
+            // Reference reference = new Reference("D&C 6:36", false);
+            // _scripture = new Scripture(reference, verse);
+            // _scriptures.Add(_scripture);
+
+            // Verse verse1 = new Verse("Wherefore, I say unto you, that ye ought to forgive one another; for he that forgiveth not his brother his trespasses standeth condemned before the Lord; for there remaineth in him the greater sin.");
+            // Verse verse2 = new Verse("I, the Lord, will forgive whom I will forgive, but of you it is required to forgive all men.");
+            // Verse verse3 = new Verse("And ye ought to say in your hearts—let God judge between me and thee, and reward thee according to thy deeds.");
+            // List<Verse> verses = new List<Verse>();
+            // verses.Add(verse1);
+            // verses.Add(verse2);
+            // verses.Add(verse3);
+            // Reference reference = new Reference("D&C 64:9-11", true);
+            // _scripture = new Scripture(reference, verses);
+            // _scriptures.Add(_scripture);
+
+
+            // Verse verse = new Verse("I, the Lord, am bound when ye do what I say; but when ye do not what I say, ye have no promise.");
+            // Reference reference = new Reference("D&C 82:10", false);
+            // _scripture = new Scripture(reference, verse);
+            // _scriptures.Add(_scripture);
+
+        }
+
+        //                  Main program
+
+        // while (_run == true)
+        // {
+        // Console.Out.Flush();
+        
+        _run = true;
+        Console.Clear();
+        PopulateList();
+        PickScripture();
+        _scripture.Display();
+        while (_run == true)
+        {
+            Prompt();
+            _scripture.CheckWordsLeft();
+            _run = _scripture.GetContinue();
+        }
     }
 }
