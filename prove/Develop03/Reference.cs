@@ -1,10 +1,18 @@
 namespace ScriptureMemorizer;
 using System;
 
+/*
+    A Reference has a string (_referenceText) and a bool (_isRange) that shows whether or not the Reference refers to
+    a range of Verses. This class needs no methods outside of the two getters.
+
+    Only one of its constructors are being used but I kept them all for fun.
+*/
+
 class Reference
 {
+    //                  Attributes:
     private string _referenceText;
-    private bool _isRange; //null
+    private bool _isRange;
 
     //                  Constructors:
     Reference()
@@ -33,11 +41,4 @@ class Reference
     {
         return _isRange;
     }
-
-    //                  Methods:
-    void CheckForRange()
-    {//If this method finds a hypen, it sets _isRange to True
-
-    }
-
 }
