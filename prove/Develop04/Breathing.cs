@@ -2,16 +2,29 @@ using System;
 namespace Mindfulness;
 
 public class Breathing : Activity {
-    public Breathing(string name, string description, int timer) : base(name, description, timer) 
+    public Breathing() : base() 
     {
-        _name = name;
-        _description = description;
-        _timer = timer;
+        _name = "Breathing";
+        _description = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
     }
 
-    void Execute()
+    public void Execute()
     {
         StartMessage();
-        
+
+        DateTime presentTime = DateTime.Now;
+        DateTime endTime = presentTime.AddMilliseconds(_timer);
+
+        while (presentTime < endTime)
+        {
+            Console.Write("\nBreathe in...");
+            PauseCountdown(4000);
+            Console.Write("\nBreathe out...");
+            PauseCountdown(6000);
+            Console.Write("\n");
+            presentTime = DateTime.Now;
+        }
+
+        EndMessage();
     }
 }
