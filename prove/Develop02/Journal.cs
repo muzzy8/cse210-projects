@@ -9,12 +9,11 @@ class Journal
 
     public Journal()
     {
-
+        
     }
 
     public void Display()
     {
-        
         int index = 0;
         foreach (Entry entry in _entries)
         {
