@@ -2,8 +2,8 @@
 
 class Lecture : Event {
     // Child Attributes
-    string _speaker;
-    string _maxCapacity;
+    private string _speaker;
+    private string _maxCapacity;
 
     // Constructor
     public Lecture() : base()

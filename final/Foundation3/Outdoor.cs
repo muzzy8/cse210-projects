@@ -1,7 +1,7 @@
 // which do not have a limit on attendees, but need to track the weather forecast.
 class Outdoor : Event {
     // Child Attributes
-    string _weather;
+    private string _weather;
 
     // Constructors
     public Outdoor() : base()

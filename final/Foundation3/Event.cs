@@ -14,11 +14,11 @@
 
 public class Event{
     // Attributes
-    string _title;
-    string _description;
-    string _date;
-    string _time;
-    string _address;
+    protected string _title;
+    protected string _description;
+    protected string _date;
+    protected string _time;
+    protected string _address;
     protected string _type;
 
     // Constructors

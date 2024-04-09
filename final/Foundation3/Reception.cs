@@ -2,7 +2,7 @@
 
 class Reception : Event {
     // Child Attributes
-    string _rsvpEmail;
+    private string _rsvpEmail;
 
     // Constructors
     public Reception() : base()
